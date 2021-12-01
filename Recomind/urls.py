@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from RecomindApp.views import index_view
+from RecomindApp import views
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index_view)
+    path('', views.index_view),
+    path('movies/', views.movies),
+    path('movie/<str:id>', views.movie),
+    path('games/', views.games),
+    path('game/<str:id>', views.game),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

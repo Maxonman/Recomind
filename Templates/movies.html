@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peliculas</title>
+    <link rel="stylesheet" href="{% static 'color.css'%}">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="container mx-auto"> 
+    <header class="h-32 object-left-top mt-10">
+        <img src="https://i.imgur.com/5PWoYE7.png" class="inset-x-0 top-0 h-28 flex" />
+    </header>
+    <div class="container grid grid-cols-1 gap-6 md:grid-cols-6">
+        {% for pelicula in peliculas %}
+        <div class="relative text-center bg-black "> 
+            <img 
+                class="h-full object-cover"
+                src="{{pelicula.Imagen}}" 
+                alt="imagen" 
+            >
+            <a 
+                href="/movie/{{pelicula.ID}}" 
+                class="absolute w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-500 flex opacity-0 hover:opacity-100"
+                onmouseover="this.style.backgroundColor = 'rgb(0, 0, 0, 0.5)';"
+                onmouseout="this.style.backgroundColor ='rgb(0,0,0,0)'"
+            > 
+
+                <h1 class="m-auto text-3xl text-white">
+                    {{pelicula}}
+                </h1>
+           </a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

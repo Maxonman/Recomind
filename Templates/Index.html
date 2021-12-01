@@ -4,7 +4,7 @@
 <html lang= "es">
     <head>
         <meta charset="utf-8" />
-        <title>Prueba del proyecto</title>
+        <title>Recomind</title>
         <meta name= "description" content= "Este es un sitio web de prueba"/>
         <meta name= "author" content= "Max Bardi"/>
         <link rel="stylesheet" href="{% static 'color.css'%}">
@@ -15,7 +15,7 @@
 
     <body class="container mx-auto">
             <header class="h-32 object-left-top mt-10">
-                <img src="media/logo.png" class="inset-x-0 top-0 h-28 flex" />
+                <img src="https://i.imgur.com/5PWoYE7.png" class="inset-x-0 top-0 h-28 flex" />
             </header>
            
             <section class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-40 ">
@@ -24,13 +24,14 @@
                 <article class="relative text-center bg-black">
                     <img 
                         class="h-full object-cover"
+                        href="http://127.0.0.1:8000/movies/"
                         src="media/Superheroes-Avengers-Infinity-War-2018_3840x2160.jpg"
                         alt="Peliculas y series"
                     >
                     </img>
 
                     <a  
-                        href="#"
+                        href="http://127.0.0.1:8000/movies/"
                         class="absolute w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-500 flex opacity-0 hover:opacity-100"
                         onmouseover="this.style.backgroundColor = 'rgb(0, 0, 0, 0.5)';"
                         onmouseout="this.style.backgroundColor ='rgb(0,0,0,0)'"
@@ -51,7 +52,7 @@
                     </img>
 
                     <a  
-                        href="#"
+                        href="http://127.0.0.1:8000/games/"
                         class="absolute w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex opacity-0 duration-500 hover:opacity-100"
                         onmouseover="this.style.backgroundColor = 'rgb(0, 0, 0, 0.5)';"
                         onmouseout="this.style.backgroundColor ='rgb(0,0,0,0)'"
@@ -72,7 +73,7 @@
                     </img>
 
                     <a  
-                        href="#"
+                        href="http://127.0.0.1:8000/animes/"
                         class="absolute w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-500 flex opacity-0 hover:opacity-100"
                         onmouseover="this.style.backgroundColor = 'rgb(0, 0, 0, 0.5)';"
                         onmouseout="this.style.backgroundColor ='rgb(0,0,0,0)'"
