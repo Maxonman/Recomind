@@ -26,4 +26,6 @@ urlpatterns = [
     path('movie/<str:id>', views.movie),
     path('games/', views.games),
     path('game/<str:id>', views.game),
+    path('animes/', views.animes),
+    path('anime/<str:id>', views.anime),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
