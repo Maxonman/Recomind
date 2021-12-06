@@ -9,10 +9,41 @@
     <link rel="stylesheet" href="{% static 'color.css'%}">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="container mx-auto"> 
-    <header class="h-32 object-left-top mt-10">
+<body class="container mx-auto">
+    <a href="../" class="h-32 object-left-top mt-10">
         <img src="https://i.imgur.com/5PWoYE7.png" class="inset-x-0 top-0 h-28 flex" />
-    </header>
+    </a>
+
+    <div class="flex">
+        
+        <input type="text" id="nombre_pelicula" placeholder="Nombre pelicula" class="m-4"></input>
+
+        <select name="Categorias" class="m-4" id="categorias">
+            <option value="Categoria"> Categoria </option>
+            <option value="Drama">Drama</option>
+            <option value="Aventura">Aventura</option>
+        </select>
+        
+        <select name="Valoracion" class="m-4" id="valoracion">
+            <option value="Valoracion"> Valoracion </option>
+            <option value="1"> 1 </option>
+            <option value="2"> 2 </option>
+            <option value="3"> 3 </option>
+            <option value="4"> 4 </option>
+            <option value="5"> 5 </option>
+            <option value="6"> 6 </option>
+            <option value="7"> 7 </option>
+            <option value="8"> 8 </option>
+            <option value="9"> 9 </option>
+            <option value="10"> 10 </option>
+        </select>
+
+        <input type="text" placeholder="Año" class="m-4" id="año"></input>
+        <input type="text" placeholder="Director" id="director" class="m-4"></input>
+        <button onclick="buscar()" class="m-4"> Buscar </button>
+    </div>
+      
+
     <div class="container grid grid-cols-1 gap-6 md:grid-cols-6">
         {% for pelicula in peliculas %}
         <div class="relative text-center bg-black "> 
@@ -35,5 +66,31 @@
         </div>
         {% endfor %}
     </div>
+
+    <script>
+
+        function buscar() {
+            const nombre = document.getElementById("nombre_pelicula")
+            const categoria = document.getElementById("categorias")
+            const valoracion = document.getElementById("valoracion")
+            const año = document.getElementById("año")
+            const director = document.getElementById("director")
+
+            let query = "?"
+            if (nombre.value != "") query += `nombre=${nombre.value}`
+            
+            const categoria_value = categoria.options[categoria.selectedIndex].value;
+            if (categoria_value != "Categoria") query += `categorias=${categoria_value}&`
+            
+            const valoracion_value = valoracion.options[valoracion.selectedIndex].value;
+            if (valoracion_value != "Valoracion") query += `valoracion=${valoracion_value}&`
+
+            if (año.value != "") query += `year=${año.value}&`
+            if (director.value != "") query += `director=${director.value}`
+
+            window.location = query;
+        }
+
+    </script>
 </body>
 </html>
