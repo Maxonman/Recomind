@@ -16,34 +16,70 @@
         
     
     </a>
-    <div class="bg-gray-400 rounded">
-        <c class="grid grid-cols-3 container">
-            <div class="grid-star-2 mx-32 m-4" >  
-                <a><img src="{{seleccion.Imagen}}"  class=" h-96 object-cover" alt="imagen"></a>
+    <div class="relative bg-gray-400 rounded">
+        <c class="container grid grid-cols-11 place-items-center">
+            <div class="col-span-4 grid grid-cols-1" > 
+               
+                <a>
+                    <img src="{{seleccion.Imagen}}"  class=" h-96 m-6 object-cover" alt="imagen">
+                </a>
+                <h1 class="text-xl letra4 h-10">
+                    ⭐ Valoracion: {{seleccion.Valoracion}}
+                </h1>
             </div>
-            <div class="grid-star-2">
-                <h1 class="text-5xl letra6 m-4">
-                    <a href="/item/{{seleccion.ID}}" >{{item.Nombre}}</a>
-                    <p>{{seleccion.Nombre}}</p>
-                </h1>   
-                <h1 class="text-xl letra4 mx-auto">
+            
+            
+            <div class="col-span-7">
+                <a>
+                    <h1 class="text-5xl letra6 h-16">
+                        <a href="/item/{{seleccion.ID}}" >{{item.Nombre}}</a>
+                        <p>{{seleccion.Nombre}}</p>
+                    </h1>
+                   
+                   
+                 
+                
+                <h1 class="text-xl letra4 mx-auto ">
+                    <h1 class="text-xl letra4 h-10">
+                        Año: {{seleccion.Year}}
+                    </h1>
+
+                    
                     {% if seleccion.Tipo.Nombre == "Anime" %}
-                        <a>
+                        <h1 class="text-xl letra4 h-10">
                             Estudio: {{seleccion.Estudio}}
-                        </a>
+                        </h1>
         
                     {% endif %}
+                    
     
                     {% if seleccion.Tipo.Nombre == "Película o Serie" %}
-                        <a>
+                        <h1 class="h-10 text-xl letra4">
                             Director: {{seleccion.Director}}
-                        </a>
+                        </h1>
     
                     {% endif %}
-                    <p>{{seleccion.Valoracion}}</p>
-                    <p>{{seleccion.Descripcion}}</p>
-                </h1>
+                    <h1 class="text-xl letra4 h-10">
+                        Categoria: {{seleccion.Categorias}}
+                    </h1>
+                    {% if seleccion.Tipo.Nombre == "Anime" %}
+                        <h1 class="text-xl letra4 h-10">
+                            Estado: {{seleccion.Terminado}}
+                        </h1>
 
+                        <h1 class="text-xl letra4 h-10">
+                            Cantidad de Capitulos: {{seleccion.Cantidad_Capitulos}}
+                        </h1>
+        
+                    {% endif %}
+
+                    
+                    
+                    
+                    <p class="text-xl letra4">
+                            {{seleccion.Descripcion}}
+                    </p>
+                </h1>
             </div>
         </c>
     </div>

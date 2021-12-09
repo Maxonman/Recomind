@@ -17,11 +17,11 @@
     <div class="flex">
         <form>
             <input type="text" id="nombre_pelicula" placeholder="Nombre pelicula" name="nombre" class="m-4"></input>
-
+                    
             <fieldset>
-                <legend>Choose your interests</legend>
+                <legend>Filtros</legend>
                 {% for categoria in categorias %}
-                    <div>
+                    <div class="grid grid-cols-3">
                         <input type="checkbox" id="{{categoria.Nombre}}" name="categorias" value="{{categoria.Nombre}}">
                         <label for="{{categoria.Nombre}}">{{categoria.Nombre}}</label>
                     </div>
