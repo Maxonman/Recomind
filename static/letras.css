@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Festive&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&family=Yanone+Kaffeesatz:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+.letra{
+    font-family: 'Festive', cursive;
+}
+.letra_pagina {
+    font-family: 'Bitter', serif;
+}
+.letra_titulos {
+    font-family: 'Shadows Into Light', cursive;
+}
+.letra1 {
+    font-family: 'IM Fell English SC', serif;
+}
+.letra2 {
+    font-family: 'Lobster', cursive;
+}
+.letra3 {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+.letra4 {
+    font-family: 'Readex Pro', sans-serif;
+}
+.letra5 {
+    font-family: 'Readex Pro', sans-serif;
+}
+.letra6 {
+    font-family: 'Roboto Condensed', sans-serif;
+}

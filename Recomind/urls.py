@@ -22,10 +22,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_view),
-    path('movies/', views.movies),
-    path('movie/<str:id>', views.movie),
-    path('games/', views.games),
-    path('game/<str:id>', views.game),
-    path('animes/', views.animes),
-    path('anime/<str:id>', views.anime),
+    path('movies/', views.items("Película o Serie")),
+    path('games/', views.items("Videojuego")),
+    path('animes/', views.items("Anime")),
+    path('item/<str:id>', views.item),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

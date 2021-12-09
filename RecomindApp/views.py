@@ -7,194 +7,65 @@ from django.http import request
 def index_view(request):
     return render(request, 'index.html')
 
-def movies(request):
-   
-
-    peliculas = models.Items.objects.all()
-
-    respuesta = []
-
-    for pelicula in peliculas:
-        
-        cantidad = 0
-        correcto = 0
-
-        req = dict(request.GET)
+def items(type):
+    print("a ", type)
+    def funcionGeneral(request):
+        print("b")
+        items = models.Items.objects.filter(Tipo=models.Tipos.objects.filter(Nombre=type)[0])
+        req = dict({
+            "nombre": [''],
+            "categorias": [],
+            "Valoracion": [0],
+            "MinimumYear": [0],
+            "MaximumYear": [10000],
+        }, **request.GET)
+        print(req)
 
         if "nombre" in req:
-            cantidad += 1
-            if req["nombre"][0].lower() in pelicula.Nombre.lower():
-                correcto += 1
-        
+            items = items.filter(Nombre__contains=req["nombre"][0])
         if "categorias" in req:
-            cantidad += 1
-            if req["categorias"][0].lower() in str(pelicula.Categorias).lower():
-                correcto += 1
-
-        if "valoracion" in req:
-            cantidad += 1
-            if int(req["valoracion"][0]) == int(float(str(pelicula.Valoracion))):
-                correcto += 1
-        
-        if "year" in req:
-            cantidad += 1
-            if int(req["year"][0]) == int(str(pelicula.Year)):
-                correcto += 1
+            for categoria in req["categorias"]:
+                items = items.filter(Categorias=models.Categorias.objects.filter(Nombre=categoria)[0])
+        if "Valoracion" in req:
+            dato = int(req["Valoracion"][0])
+            items = items.filter(Valoracion__gte=dato)
+        if "MinimumYear" in req:
+            if req["MinimumYear"][0] == '':
+                req["MinimumYear"][0] = 0
+            dato = int(req["MinimumYear"][0])
+            items = items.filter(Year__gte=dato)
+        if "MaximumYear" in req:
+            if req["MaximumYear"][0] == '':
+                req["MaximumYear"][0] = 1000000
+            dato = int(req["MaximumYear"][0])
+            items = items.filter(Year__lte=dato)
 
         if "director" in req:
-            cantidad += 1
-            if req["director"][0].lower() in str(pelicula.Director).lower():
-                correcto += 1
-
-        if cantidad == correcto:
-            respuesta.append(pelicula)
-
-    if len(request.GET) == 0:
-        respuesta = peliculas
-
-    return render(
-        request,
-        "movies.html",
-        {
-            "peliculas": respuesta
-        }
-    )
-    
-def movie(request, id):
-    
-    pelicula = models.Items.objects.get(ID=id)
-    return render(
-        request, 
-        "movie.html",
-        {
-            "seleccion": pelicula
-        }
-    )
-
-def games(request):
-    
-    juegos = models.Items.objects.all()
-    
-    respuesta = []
-
-    for jeugo in juegos:
+            if req["director"][0] != '':
+                print(req["director"][0])
+                directores = models.Directores.objects.filter(Nombre__contains=req["director"][0])
+                if len(directores)>1:
+                    items = items.filter(Director=directores[0])
+        print(req)
         
-        cantidad = 0
-        correcto = 0
+        return render(
+            request,
+            "general.html",
+            {
+                "items": items,
+                "categorias": models.Categorias.objects.all(),
+                "type": type,   
+            }
+        )
+    return funcionGeneral
 
-        req = dict(request.GET)
 
-        if "nombre" in req:
-            cantidad += 1
-            if req["nombre"][0].lower() in juego.Nombre.lower():
-                correcto += 1
-        
-        if "categorias" in req:
-            cantidad += 1
-            if req["categorias"][0].lower() in str(juego.Categorias).lower():
-                correcto += 1
-
-        if "valoracion" in req:
-            cantidad += 1
-            if int(req["valoracion"][0]) == int(float(str(juego.Valoracion))):
-                correcto += 1
-        
-        if "year" in req:
-            cantidad += 1
-            if int(req["year"][0]) == int(str(juego.Year)):
-                correcto += 1
-
-        if "director" in req:
-            cantidad += 1
-            if req["Desarrollador"][0].lower() in str(juego.Desarrollador).lower():
-                correcto += 1
-
-        if cantidad == correcto:
-            respuesta.append(juego)
-
-    if len(request.GET) == 0:
-        respuesta = juegos
-
-    return render(
-        request,
-        "games.html",
-        {
-            "juegos": juegos,
-        }
-    )
-    
-def game(request, id):
-    
-    juego = models.Items.objects.get(ID=id)
+def item(request, id):
+    item = models.Items.objects.get(ID=id)
     return render(
         request, 
-        "game.html",
+        "item.html",
         {
-            "seleccion": juego
-        }
-    )
-
-def animes(request):
-    
-    animes = models.Items.objects.all()
-    
-    
-
-    respuesta = []
-
-    for anime in animes:
-        
-        cantidad = 0
-        correcto = 0
-
-        req = dict(request.GET)
-
-        if "nombre" in req:
-            cantidad += 1
-            if req["nombre"][0].lower() in anime.Nombre.lower():
-                correcto += 1
-        
-        if "categorias" in req:
-            cantidad += 1
-            if req["categorias"][0].lower() in str(anime.Categorias).lower():
-                correcto += 1
-
-        if "valoracion" in req:
-            cantidad += 1
-            if int(req["valoracion"][0]) == int(float(str(anime.Valoracion))):
-                correcto += 1
-        
-        if "year" in req:
-            cantidad += 1
-            if int(req["year"][0]) == int(str(anime.Year)):
-                correcto += 1
-
-        if "estudio" in req:
-            cantidad += 1
-            if req["estudio"][0].lower() in str(anime.Estudio).lower():
-                correcto += 1
-
-        if cantidad == correcto:
-            respuesta.append(anime)
-
-    if len(request.GET) == 0:
-        respuesta = animes
-
-    return render(
-        request,
-        "animes.html",
-        {
-            "animes": animes,
-        }
-    )
-    
-def anime(request, id):
-    
-    anime = models.Items.objects.get(ID=id)
-    return render(
-        request, 
-        "anime.html",
-        {
-            "seleccion": anime
+            "seleccion": item
         }
     )
