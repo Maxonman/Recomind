@@ -10,8 +10,8 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="container mx-auto">
-    <a href="../" class="h-32 object-left-top mt-10">
-        <img src="https://i.imgur.com/5PWoYE7.png" class="inset-x-0 top-0 h-28 flex" />
+    <a href="../">
+        <img src="https://i.imgur.com/LOERwh4.png" class="h-52" />
     </a>
 
     <div class="flex">
@@ -21,7 +21,7 @@
             <fieldset>
                 <legend>Filtros</legend>
                 {% for categoria in categorias %}
-                    <div class="grid grid-cols-3">
+                    <div>
                         <input type="checkbox" id="{{categoria.Nombre}}" name="categorias" value="{{categoria.Nombre}}">
                         <label for="{{categoria.Nombre}}">{{categoria.Nombre}}</label>
                     </div>
