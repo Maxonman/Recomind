@@ -8,10 +8,9 @@ def index_view(request):
     return render(request, 'index.html')
 
 def items(type):
-    print("a ", type)
     def funcionGeneral(request):
-        print("b")
-        items = models.Items.objects.filter(Tipo=models.Tipos.objects.filter(Nombre=type)[0])
+        tipo = models.Tipos.objects.get(Nombre=type)
+        items = models.Items.objects.filter(Tipo=tipo)
         req = dict({
             "nombre": [''],
             "categorias": [],
@@ -53,7 +52,7 @@ def items(type):
             "general.html",
             {
                 "items": items,
-                "categorias": models.Categorias.objects.all(),
+                "categorias": models.Categorias.objects.filter(Tipo=tipo),
                 "type": type,   
             }
         )

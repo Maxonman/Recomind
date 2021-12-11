@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{seleccion.Nombre}}</title>
-    <link rel="stylesheet" href="{% static 'color.css'%}">
+    
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'letras.css'%}">
+    <link rel="stylesheet" href="{% static 'color.css'%}">
 </head>
 <body class="container mx-auto " >
     <a href="http://127.0.0.1:8000" >
@@ -47,6 +48,13 @@
                     {% if seleccion.Tipo.Nombre == "Anime" %}
                         <h1 class="text-xl letra4 h-10">
                             Estudio: {{seleccion.Estudio}}
+                        </h1>
+        
+                    {% endif %}
+
+                    {% if seleccion.Tipo.Nombre == "Videojuego" %}
+                        <h1 class="text-xl letra4 h-10">
+                            Estudio: {{seleccion.Desarrollador}}
                         </h1>
         
                     {% endif %}
