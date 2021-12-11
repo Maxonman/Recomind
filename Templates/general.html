@@ -6,71 +6,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ type }}</title>
-    <link rel="stylesheet" href="{% static 'color.css'%}">
+   
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'color.css'%}">
+    <link rel="stylesheet" href="{% static 'letras.css'%}">
 </head>
 <body class="container mx-auto">
     <a href="../">
         <img src="https://i.imgur.com/LOERwh4.png" class="h-52" />
     </a>
 
-    <div class="flex">
-        <form>
-            <input type="text" id="nombre_pelicula" placeholder="Nombre pelicula" name="nombre" class="m-4"></input>
-                    
-            <fieldset>
-                <legend>Filtros</legend>
-                {% for categoria in categorias %}
-                    <div>
-                        <input type="checkbox" id="{{categoria.Nombre}}" name="categorias" value="{{categoria.Nombre}}">
-                        <label for="{{categoria.Nombre}}">{{categoria.Nombre}}</label>
-                    </div>
-                {% endfor %}
-            </fieldset>
-
-            <select name="Valoracion" class="m-4" id="valoracion">
-                <option value="Valoracion" disabled selected hidden> Valoracion </option>
-                {% for i in '0123456789'|make_list %}
-                    <option value="{{i}}"> {{i}} </option>
-                {% endfor %}
-            </select>
-
-            <input name="MinimumYear" pattern="[0-9]*" placeholder="Mínimo" enterkeyhint="go" rows="1" maxlength="120" value="">
-            <input name="MaximumYear" pattern="[0-9]*" placeholder="Máximo" enterkeyhint="go" rows="1" maxlength="120" value="">
-
-            {% if type == "Anime" %}
-                <input type="text" placeholder="Estudio" id="estudio" class="m-4" name="estudio"></input>
-            {% elif type == "Videojuego"%}
-                <input type="text" placeholder="Desarrollador" id="desarrollador" class="m-4" name="desarrollador"></input>
-            {% else %}
-                <input type="text" placeholder="Director" id="director" class="m-4" name="director"></input>
-            {% endif %}
-            <input type="submit" class="m-4"></button>
-        </form>
-    </div>
-      
-
-    <div class="container grid grid-cols-1 gap-6 md:grid-cols-7"s>
-        {% for item in items %}
-        <div class="relative text-center bg-black "> 
-            <img 
-                class="h-full object-cover"
-                src="{{item.Imagen}}" 
-                alt="imagen" 
-            >
-            <a 
-                href="/item/{{item.ID}}" 
-                class="absolute w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-500 flex opacity-0 hover:opacity-100"
-                onmouseover="this.style.backgroundColor = 'rgb(0, 0, 0, 0.5)';"
-                onmouseout="this.style.backgroundColor ='rgb(0,0,0,0)'"
-            > 
-
-                <h1 class="m-auto text-3xl text-white">
-                    {{item}}
-                </h1>
-           </a>
+    <div>
+        <div class="flex">
+            <form>
+                <input type="text" id="nombre_pelicula" placeholder="Nombre pelicula" name="nombre" class="m-4"></input>
+                        
+                <fieldset>
+                    <legend>Filtros</legend>
+                    {% for categoria in categorias %}
+                        <div>
+                            <input type="checkbox" id="{{categoria.Nombre}}" name="categorias" value="{{categoria.Nombre}}">
+                            <label for="{{categoria.Nombre}}">{{categoria.Nombre}}</label>
+                        </div>
+                    {% endfor %}
+                </fieldset>
+    
+                <select name="Valoracion" class="m-4" id="valoracion">
+                    <option value="Valoracion" disabled selected hidden> Valoracion </option>
+                    {% for i in '0123456789'|make_list %}
+                        <option value="{{i}}"> {{i}} </option>
+                    {% endfor %}
+                </select>
+                
+                <input name="MinimumYear" pattern="[0-9]*" placeholder="Año Mínimo" enterkeyhint="go" rows="1" maxlength="120" value="">
+                <input name="MaximumYear" pattern="[0-9]*" placeholder="Año Máximo" enterkeyhint="go" rows="1" maxlength="120" value="">
+    
+                {% if type == "Anime" %}
+                    <input type="text" placeholder="Estudio" id="estudio" class="m-4" name="estudio"></input>
+                {% elif type == "Videojuego"%}
+                    <input type="text" placeholder="Desarrollador" id="desarrollador" class="m-4" name="desarrollador"></input>
+                {% else %}
+                    <input type="text" placeholder="Director" id="director" class="m-4" name="director"></input>
+                {% endif %}
+                <span class="sr-only">Choose profile photo</span>
+                <input type="submit" placeholder="Director" class="m-4 h-10"></button>
+            </form>
         </div>
-        {% endfor %}
+          
+    
+        <div class="container grid grid-cols-1 gap-6 md:grid-cols-7 mb-10"s>
+            {% for item in items %}
+            <div class="relative text-center bg-black "> 
+                <img 
+                    class="h-full object-cover"
+                    src="{{item.Imagen}}" 
+                    alt="imagen" 
+                >
+                <a 
+                    href="/item/{{item.ID}}" 
+                    class="absolute w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-500 flex opacity-0 hover:opacity-100"
+                    onmouseover="this.style.backgroundColor = 'rgb(0, 0, 0, 0.5)';"
+                    onmouseout="this.style.backgroundColor ='rgb(0,0,0,0)'"
+                > 
+    
+                    <h1 class="m-auto text-3xl text-white">
+                        {{item}}
+                    </h1>
+               </a>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>

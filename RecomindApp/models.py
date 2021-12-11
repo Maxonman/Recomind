@@ -20,9 +20,13 @@ class Directores(models.Model):
 class Categorias(models.Model):
     ID = models.AutoField(primary_key=True)
     Nombre = models.CharField(max_length=30)
+    Tipo = models.ForeignKey(Tipos, on_delete=models.CASCADE, null=True)
     
     def __str__(self):
-        return self.Nombre
+        try:
+            return f"{self.Nombre}, {self.Tipo.Nombre}"
+        except:
+            return self.Nombre
 
 class Estudio(models.Model):
     ID = models.AutoField(primary_key=True)
