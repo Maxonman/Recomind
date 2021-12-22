@@ -56,15 +56,29 @@ def items(type):
                 "type": type,   
             }
         )
+
     return funcionGeneral
 
 
 def item(request, id):
     item = models.Items.objects.get(ID=id)
+
+    # Agarramos la primera wea antes de la coma
+    categoria = str(item.Categorias).split(",")[0]
+    estado = bool(item.Terminado)
+
+
+    if not estado:
+        estado = "En emision"
+    else:
+        estado = "Emisión finalizada"
+
     return render(
         request, 
         "item.html",
         {
-            "seleccion": item
+            "seleccion": item,
+            "categoria": categoria,
+            "estado": estado
         }
     )

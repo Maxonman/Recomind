@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'color.css'%}">
     <link rel="stylesheet" href="{% static 'letras.css'%}">
 </head>
-<body class="container mx-auto">
+<body class="container mx-auto bg-gradient-to-r from-purple-500 to-pink-500">
     <a href="../">
         <img src="https://i.imgur.com/LOERwh4.png" class="h-52" />
     </a>
@@ -19,37 +19,38 @@
     <div>
         <div class="flex">
             <form>
-                <input type="text" id="nombre_pelicula" placeholder="Nombre pelicula" name="nombre" class="m-4"></input>
+                <input class="bg-transparent placeholder-white appearance-none border-2 text-white py-1 px-2 focus:outline-none w-full" type="text" id="nombre_pelicula" placeholder="Nombre pelicula" name="nombre" class="m-4"></input>
                         
-                <fieldset>
-                    <legend>Filtros</legend>
+                <fieldset class="grid grid-cols-8 gap-4">
+
+                    <legend class="text-white mb-1 mt-3 font-bold">Filtros</legend>
                     {% for categoria in categorias %}
-                        <div>
+                        <div class="rounded border-2 pl-5 pr-5 pt-1 pb-1 text-center">
                             <input type="checkbox" id="{{categoria.Nombre}}" name="categorias" value="{{categoria.Nombre}}">
-                            <label for="{{categoria.Nombre}}">{{categoria.Nombre}}</label>
+                            <label class="text-white" for="{{categoria.Nombre}}">{{categoria.Nombre}}</label>
                         </div>
                     {% endfor %}
                 </fieldset>
     
-                <select name="Valoracion" class="m-4" id="valoracion">
+                <select class="bg-transparent appearance-none border-2 text-white py-1 px-2 focus:outline-none" name="Valoracion" class="m-4" id="valoracion">
                     <option value="Valoracion" disabled selected hidden> Valoracion </option>
                     {% for i in '0123456789'|make_list %}
-                        <option value="{{i}}"> {{i}} </option>
+                        <option class="text-black" value="{{i}}"> {{i}} </option>
                     {% endfor %}
                 </select>
-                
-                <input name="MinimumYear" pattern="[0-9]*" placeholder="Año Mínimo" enterkeyhint="go" rows="1" maxlength="120" value="">
-                <input name="MaximumYear" pattern="[0-9]*" placeholder="Año Máximo" enterkeyhint="go" rows="1" maxlength="120" value="">
+                <input class="bg-transparent appearance-none border-2 text-white py-1 px-2 focus:outline-none placeholder-white" name="MinimumYear" pattern="[0-9]*" placeholder="Año Mínimo" enterkeyhint="go" rows="1" maxlength="120">
+                <input class="bg-transparent appearance-none border-2 text-white py-1 px-2 focus:outline-none placeholder-white" name="MaximumYear" pattern="[0-9]*" placeholder="Año Máximo" enterkeyhint="go" rows="1" maxlength="120" value="">
     
                 {% if type == "Anime" %}
-                    <input type="text" placeholder="Estudio" id="estudio" class="m-4" name="estudio"></input>
+                    <input class="bg-transparent appearance-none border-2 text-white py-1 px-2 focus:outline-none placeholder-white" type="text" placeholder="Estudio" id="estudio" class="m-4" name="estudio"></input>
                 {% elif type == "Videojuego"%}
-                    <input type="text" placeholder="Desarrollador" id="desarrollador" class="m-4" name="desarrollador"></input>
+                    <input class="bg-transparent appearance-none border-2 text-white py-1 px-2 focus:outline-none placeholder-white" type="text" placeholder="Desarrollador" id="desarrollador" class="m-4" name="desarrollador"></input>
                 {% else %}
-                    <input type="text" placeholder="Director" id="director" class="m-4" name="director"></input>
+                    <input class="bg-transparent appearance-none border-2 text-white py-1 px-2 focus:outline-none placeholder-white" type="text" placeholder="Director" id="director" class="m-4" name="director"></input>
                 {% endif %}
-                <span class="sr-only">Choose profile photo</span>
-                <input type="submit" placeholder="Director" class="m-4 h-10"></button>
+
+                <!-- <span class="sr-only">Choose profile photo</span> -->
+                <input type="submit" class="m-4 h-10 rounded bg-white p-3 text-center" value="Buscar"></button>
             </form>
         </div>
           
